@@ -7,8 +7,8 @@
 // Rotina principal
 
 
-const LINHA = 40;   //60/60/10
-const COLUNA = 40;
+const LINHA = 6;   //60/60/10
+const COLUNA = 27;
 const TAMANHO = 15;
 const VAGO = "#414141"; 
 
@@ -146,8 +146,8 @@ function gerarPeca(){
 		cor : PECAS[r[primeirapeca]][1],
 		tetraminoN : 0,
 		tetraminoAtivo : [[]],
-		x : 19,
-		y : -2,
+		x : 12, //19
+		y : -2, //-2
 	};
 
 	peca2 = {
@@ -155,7 +155,7 @@ function gerarPeca(){
 		cor : PECAS[r[primeirapeca+1]][1],
 		tetraminoN : 0,
 		tetraminoAtivo : [[]],
-		x : 19,
+		x : 12,
 		y : -2,
 	}
 
@@ -164,7 +164,7 @@ function gerarPeca(){
 		cor : PECAS[r[primeirapeca+2]][1],
 		tetraminoN : 0,
 		tetraminoAtivo : [[]],
-		x : 19,
+		x : 12,
 		y : -2,
 	}
 
@@ -173,7 +173,7 @@ function gerarPeca(){
 		cor : PECAS[r[primeirapeca+2]][1],
 		tetraminoN : 0,
 		tetraminoAtivo : [[]],
-		x : 19,
+		x : 12,
 		y : -2,
 	}
 	
@@ -298,29 +298,37 @@ function colisao(x, y, p){
 function mostradurante(){	
 	
 	c.fillStyle = "#A8FEC5";
-	c.fillRect(0,0,300,600);
+	c.fillRect(0,0,400,500);
 	c.fillStyle = ("black");
-	c.font = "25px Courier New"
-	c.fillText("pontos", 105, tela.height/2.2);  //pontos texto 
+	c.font = "25px Russo One"
+	c.fillText("Score", 122, tela.height/2.2);  //pontos texto 
 	c.fillStyle = "black";
 	c.fillStyle = ("black");
-	c.font = "50px Courier New"
-	c.fillText(contPLACAR, 110, tela.height/2.6);
+	c.font = "50px Russo One"
+	if(contPLACAR<100){
+		if(contPLACAR<10){
+			c.fillText(contPLACAR, 140, tela.height/2.5);
+		}else{
+			c.fillText(contPLACAR, 130, tela.height/2.5);
+		}
+	} else{
+		c.fillText(contPLACAR, 115, tela.height/2.5);
+	}
 	
 	c.fillStyle = ("black");
-	c.font = "25px Courier New"
-	c.fillText("nível", 115, tela.height/1.55); // NIVEL texto
+	c.font = "25px Russo One"
+	c.fillText("Level", 125, tela.height/1.55); // NIVEL texto
 	c.fillStyle = "#49beb7";
 	c.fillStyle = ("black");
-	c.font = "50px Courier New"
-	c.fillText(contNIVEL, 140, tela.height/1.8); // contagem nivel 
+	c.font = "50px Russo One"
+	c.fillText(contNIVEL, 145, tela.height/1.7); // contagem nivel 
 
 	c.fillStyle = ("black");
-	c.font = "25px Courier New"
-	c.fillText("linhas preenchidas", 20, tela.height/1.2); // linha texto
+	c.font = "25px Russo One"
+	c.fillText("Completed lines", 50, tela.height/1.2); // linha texto
 	c.fillStyle = "#49beb7";
 	c.fillStyle = ("black");
-	c.font = "50px Courier New"
+	c.font = "50px Russo One"
 	c.fillText(contLINHAS, 140, tela.height/1.3); //contagem linhas
 
 	c.drawImage(logo, 0, -60, 330, 310);
@@ -329,10 +337,10 @@ function mostradurante(){
 
 function mostraproximapeca(){
 	c3.fillStyle = "#A8FEC5";
-	c3.fillRect(0,0,300,600);
+	c3.fillRect(0,0,300,500);
 	c3.fillStyle = ("black");
-	c3.font = "27px Calibri"
-	c3.fillText("Próxima peça: ", 65, 50);
+	c3.font = "27px Russo One"
+	c3.fillText("Next move", 90, 50);
 	c3.drawImage(proxpeca[r[primeirapeca+1]], 75, 100, 160, 130);  //130x110
 	c3.drawImage(proxpeca[r[primeirapeca+2]], 75, 240, 160, 130);
 	c3.drawImage(proxpeca[r[primeirapeca+3]], 75, 390, 160, 130);
@@ -366,8 +374,7 @@ function travarPeca(){
                 continue;
 
             }
-
-            if (peca.y + i < 0) {
+        	if (peca.y + i < 0) {
             	apagarTabuleiro();
             	estatistica();
 				somfinal.play();
@@ -391,8 +398,8 @@ function travarPeca(){
 				c2.fillStyle = "black";
 				c2.fillRect = (0,0,800,600);
 				c2.fillStyle = ("black");
-				c2.font = "60px Times New Roman"
-				c2.fillText("GAME OVER", 140, tela.height/8);
+				c2.font = "50px Russo One"
+				c2.fillText("GAME OVER", 50, tela.height/8);
 					c3.fillStyle = "black";
 					c3.fillRect = (0,0,800,600);
 					c3.fillStyle = ("black");
@@ -435,8 +442,8 @@ function travarPeca(){
 												c3.fillText(" - "+contJ+" vezes",90, tela.height/1.072); // j
 				ranking();
 				c2.fillStyle= ("#a8fec5");
-				c2.font = "40px Times New Roman"
-				c2.fillText("Ranking", 225, tela.height/5);
+				c2.font = "30px Russo One"
+				c2.fillText("Ranking", 130, tela.height/5);
 
                 break;
             }
@@ -475,11 +482,6 @@ function travarPeca(){
         	velocidade = velocidade - 100;  //vai diminuindo a velocidade de 1000/900/800...  
         	contadorlinhasnivel = 0; // ---     	
         }
-
-       /* else if(linhaseliminadas >= (10-contLINHAS)){ 
-			velocidade = velocidade - 100; 
-        	linhaseliminadas = 0;
-        }*/
 
     	if(linhaseliminadas == 1){
 			linhaseliminadas = 0;
@@ -552,14 +554,12 @@ function rodarPecaEsquerda(){
 
 
 function barradeespaco(){
-	
    while(!colisao(0, 1, peca.tetraminoAtivo)) {
         apagarPeca();
 		peca.y++;
 		contPLACAR += 2;
         desenharPeca();
 	}  
-
 }
 
 function controlarPeca(evento){
