@@ -59,67 +59,65 @@ var pessoa;
 function ranking(){
 
 	
-					var pergunta = prompt("Gostaria de salvar seu nome no ranking? 1- sim 2 - não");
-					ranking  = JSON.parse(localStorage.getItem('ranking'));
-					if(pergunta == "1"){
-						
-							if(ranking == null){
-								ranking = [];
-							}
+var pergunta = prompt("Gostaria de salvar seu nome no ranking? 1- sim 2 - não");
+ranking  = JSON.parse(localStorage.getItem('ranking'));
+if(pergunta == "1"){		
+	if(ranking == null){
+		ranking = [];
+	}
 
-							var sigla = prompt("DIGITE SEU NOME").slice(0,3);
-							pessoa = {
-								nomesigla: sigla,
-								placar: contPLACAR
-							};
+	var sigla = prompt("DIGITE SEU NOME").slice(0,3);
+	pessoa = {
+		nomesigla: sigla,
+		placar: contPLACAR
+	};
 
-							var aux = "";
-							for (conta = 0 ; conta <ranking.length ; conta++){
-								if(pessoa.nomesigla == ranking[conta].sigla){
-									if(pessoa.placar > ranking[conta].placar){
-										ranking[conta] = nomesigla;
-										aux = "cinco";
-									}								
-								}
-							}
+	var aux = "";
+	for (conta = 0 ; conta <ranking.length ; conta++){
+		if(pessoa.nomesigla == ranking[conta].sigla){
+			if(pessoa.placar > ranking[conta].placar){
+				ranking[conta] = nomesigla;
+				aux = "cinco";
+			}								
+		}
+	}
 
-							if(aux !== "cinco"){
-								ranking.push(pessoa);
-							}
+	if(aux !== "cinco"){
+		ranking.push(pessoa);
+	}
 
-								if(ranking == null){
-									ranking = [];
-								}
+	if(ranking == null){
+		ranking = [];
+	}
 
-							var auxordenacao;
-							var z;
+	var auxordenacao;
+	var z;
 
-							for (var i = 1; i < ranking.length; i++) {
-								auxordenacao = ranking[i];
-								z = i;
+	for (var i = 1; i < ranking.length; i++) {
+		auxordenacao = ranking[i];
+		z = i;
 
-								while (z > 0 && ranking[z-1].placar < auxordenacao.placar) {
-									ranking[z] = ranking[z-1];
-									z--;
-								}
-								ranking[z] = auxordenacao;
-							}	
-								if (ranking.length > 5) {
-									while(ranking.length>5){
-										ranking.pop();
-									}
-						 		}
-							
-					}
-							localStorage.setItem("ranking",JSON.stringify(ranking));
+		while (z > 0 && ranking[z-1].placar < auxordenacao.placar) {
+			ranking[z] = ranking[z-1];
+			z--;
+		}
+		ranking[z] = auxordenacao;
+	}	
+	if (ranking.length > 5) {
+		while(ranking.length>5){
+			ranking.pop();
+		}
+	}							
+}
+	localStorage.setItem("ranking",JSON.stringify(ranking));
 
-		var altura = 170;						
-							for(var i = 0; i < ranking.length ; i++){
-								c2.fillStyle = "#49beb7";
-								c2.fillStyle = ("white");
-								c2.font = "30px Courier New"
-								c2.fillText(contRanking+". "+ranking[i].nomesigla+" - "+ ranking[i].placar, 185, altura);// /3	
-								altura += 80;
-								contRanking++
-							}
+	var altura = 170;						
+	for(var i = 0; i < ranking.length ; i++){
+		c2.fillStyle = "#49beb7";
+		c2.fillStyle = ("white");
+		c2.font = "30px Courier New"
+		c2.fillText(contRanking+". "+ranking[i].nomesigla+" - "+ ranking[i].placar, 100, altura);// /3	
+		altura += 60;
+		contRanking++
+	}
 }
